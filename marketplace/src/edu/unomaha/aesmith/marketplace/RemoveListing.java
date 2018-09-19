@@ -1,6 +1,7 @@
 package edu.unomaha.aesmith.marketplace;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.servlet.ServletException;
@@ -30,9 +31,16 @@ public class RemoveListing extends HttpServlet {
 		try {
 			
 			stmnt = myConnection.createStatement();
-			StringBuilder sql = new StringBuilder("delete from listings where id = ").append(idDelete);
+			StringBuilder sql = new StringBuilder("delete from Listings where id = ").append(idDelete);
 			stmnt.executeUpdate(sql.toString());
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			stmnt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

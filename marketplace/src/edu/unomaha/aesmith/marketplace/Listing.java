@@ -4,27 +4,23 @@ import java.sql.Timestamp;
 
 public class Listing {
 	
-//	private static final long serialVersionUID = 8843983427634673489L;
-	
 	private int id;
 	private Timestamp created;
 	
 	private String listingName;
 	private String listingPrice;
-	private String listingImgURL;
 	private String listingDescription;
 	private String listingSeller;
 	private String listingEmail;
 
-	public Listing(int id, Timestamp created, String name, String price, String img, String description, String seller, String email) {
-		this(name, price, img, description, seller, email);
+	public Listing(int id, Timestamp created, String name, String price, String description, String seller, String email) {
+		this(name, price, description, seller, email);
 		this.id = id;
 		this.created = created;
 	}
-	public Listing(String name, String price, String img, String description, String seller, String email) {
+	public Listing(String name, String price, String description, String seller, String email) {
 		this.listingName = name;
 		this.listingPrice = price;
-		this.listingImgURL = img;
 		this.listingDescription = description;
 		this.listingSeller = seller;
 		this.listingEmail = email;
@@ -58,12 +54,6 @@ public class Listing {
 	}
 	public void setListingPrice(String listingPrice) {
 		this.listingPrice = listingPrice;
-	}
-	public String getListingImgURL() {
-		return listingImgURL;
-	}
-	public void setListingImgURL(String listingImgURL) {
-		this.listingImgURL = listingImgURL;
 	}
 	public String getListingDescription() {
 		return listingDescription;

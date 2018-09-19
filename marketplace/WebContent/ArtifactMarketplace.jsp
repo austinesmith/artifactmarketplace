@@ -16,7 +16,7 @@ import="java.sql.ResultSet" import="java.util.*" import="edu.unomaha.aesmith.mar
 	Connection myConnection = (Connection) getServletContext().getAttribute("DBConnect");
 	PreparedStatement mySQL = null;
 	try {
-		mySQL = myConnection.prepareStatement("select * from listings");
+		mySQL = myConnection.prepareStatement("select * from Listings");
 	} catch (SQLException e1) {
 		// TODO Auto-generated catch block
 		e1.printStackTrace();
@@ -37,12 +37,21 @@ import="java.sql.ResultSet" import="java.util.*" import="edu.unomaha.aesmith.mar
 	try {
 
 		while(myResults.next()){
-			arrList.add(new Listing(myResults.getInt("id"), myResults.getTimestamp("create"), myResults.getString("listingName"), myResults.getString("listingPrice"), myResults.getString("listingImgURL"), myResults.getString("listingDescription"), myResults.getString("listingSeller"), myResults.getString("listingEmail")));
+			arrList.add(
+					new Listing(
+							myResults.getInt("id"), 
+							myResults.getTimestamp("create"), 
+							myResults.getString("listingName"), 
+							myResults.getString("listingPrice"), 
+							myResults.getString("listingDescription"), 
+							myResults.getString("listingSeller"), 
+							myResults.getString("listingEmail")
+							)
+					);
 		}
 	} catch (SQLException e) {
 		e.printStackTrace();
 	}
-	System.out.println("Should prints....");
 	
 	// dispose resources
 	try {

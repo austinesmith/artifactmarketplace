@@ -1,6 +1,7 @@
 package edu.unomaha.aesmith.marketplace;
 //import com.mysql.jdbc.Driver;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -20,6 +21,14 @@ public class DBListener implements ServletContextListener{
 			e.printStackTrace();
 		}
 		
+		java.sql.Driver mySqlDriver;
+		try {
+			mySqlDriver = DriverManager.getDriver("jdbc:mysql://localhost:3306/");
+			DriverManager.deregisterDriver(mySqlDriver);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// confirm
 		System.out.println("DB Close Successful");
 	}
@@ -43,9 +52,6 @@ public class DBListener implements ServletContextListener{
 		
 		// add connect info to app 
 		myContext.setAttribute("DBConnect", myConnectionManager.getConnection());
-		
-		// confirm
-		System.out.println("DB Connection Successful");
 	}
 
 }

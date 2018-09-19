@@ -1,6 +1,7 @@
 package edu.unomaha.aesmith.marketplace;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.servlet.ServletException;
@@ -27,7 +28,7 @@ public class AddListing extends HttpServlet {
 		try {
 			
 			stmnt = myConnection.createStatement();
-			StringBuilder sql = new StringBuilder("insert into listings (listingName, listingPrice, ") 
+			StringBuilder sql = new StringBuilder("insert into Listings (listingName, listingPrice, ") 
 			.append("listingDescription, listingSeller, listingEmail) values ('")
 			.append(request.getParameter("itemName"))
 			.append("', '").append(request.getParameter("itemPrice"))
@@ -38,6 +39,13 @@ public class AddListing extends HttpServlet {
 			System.out.println(sql);
 			stmnt.executeUpdate(sql.toString());
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			stmnt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
